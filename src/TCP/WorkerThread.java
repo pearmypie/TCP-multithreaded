@@ -40,7 +40,7 @@ public class WorkerThread extends Thread {
             writer.close();
             reader.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

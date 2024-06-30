@@ -14,19 +14,16 @@ public class WorkerThread extends Thread {
     @Override
     public void run() {
         /* Declarations */
-        OutputStream os; PrintWriter writer;
-        InputStream is; BufferedReader reader;
+        PrintWriter writer;
+        BufferedReader reader;
         String inputLine, outputLine;
 
         /* Process request */
         System.out.println("Client connected!\nAddress: " + clientSocket.getInetAddress().toString() +"\nPort: " + clientSocket.getPort());
 
         try {
-            is = clientSocket.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(is));
-
-            os = clientSocket.getOutputStream();
-            writer = new PrintWriter(os, true);
+            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            writer = new PrintWriter(clientSocket.getOutputStream(), true);
 
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
